@@ -1,0 +1,32 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[scripts]
+serve = "uvicorn love_story:app --reload"
+dev = "uvicorn love_story:app --reload"
+
+[packages]
+fastapi = "==0.89.1"
+fastapi-utils = "==0.2.1"
+passlib = {extras = ["bcrypt"], version = "*"}
+pydantic = "==1.10.4"
+python-dotenv = "==0.21.1"
+python-multipart = "*"
+requests = "*"
+uvicorn = {extras = ["standard"], version = "==0.20.0"}
+sqlalchemy = "*"
+starlette = "*"
+"ruamel.yaml" = "*"
+orjson = "*"
+msgpack = "*"
+sqlalchemy-migrate = "*"
+psycopg2 = "*"
+python-jose = {extras = ["cryptography"], version = "*"}
+fastapi-mail = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10.9"
