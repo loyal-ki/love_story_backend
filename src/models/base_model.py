@@ -8,9 +8,9 @@ from src.utils import alchemy
 
 
 class BaseModel(object):
-    created = Column(DateTime, default=datetime.utcnow)
-    modified = Column(DateTime, default=datetime.utcnow,
-                      onupdate=datetime.utcnow)
+    created = Column(DateTime, default=datetime.now)
+    modified = Column(DateTime, default=datetime.now,
+                      onupdate=datetime.now)
 
     @classmethod
     def find_one(cls, session, id):

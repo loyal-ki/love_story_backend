@@ -39,7 +39,10 @@ class OTPsModel(Base):
 
     FIELDS = {
         'id': int,
+        'session_id': String,
         'user_id': int,
+        'otp_code': String,
+        'otp_failed_count': int,
     }
 
     FIELDS.update(Base.FIELDS)

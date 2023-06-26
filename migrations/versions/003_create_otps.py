@@ -14,9 +14,9 @@ table = Table(
     Column("otp_code", String(6)),
     Column("status", String(1)),
     Column("otp_failed_count", Integer),
-    Column("created", DateTime, default=datetime.utcnow),
-    Column("modified", DateTime, default=datetime.utcnow,
-           onupdate=datetime.utcnow)
+    Column("created", DateTime, default=datetime.now),
+    Column("modified", DateTime, default=datetime.now,
+           onupdate=datetime.now)
 )
 
 

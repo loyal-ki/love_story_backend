@@ -38,15 +38,13 @@ async def otp_send_api(
     session: Session = Depends(db_session)
 ):
 
-    since = datetime.datetime.now() - datetime.timedelta(minutes=5)
+    since = datetime.datetime.now() - datetime.timedelta(seconds=10)
 
     # check block otp
     otp_blocks = session.query(OTPBlocksModel).filter(
         OTPBlocksModel.user_id == request_data.user_id and or_(
             OTPBlocksModel.created == None,
-            OTPBlocksModel.created < since)).first()
-
-    print(otp_blocks)
+            OTPBlocksModel.created > since)).first()
 
     if otp_blocks:
         raise OTPBlockedWithUserId

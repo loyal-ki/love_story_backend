@@ -46,6 +46,7 @@ def get_app():
     # Initialize FastAPI
     app = FastAPI(title=APP_NAME, version=VERSION,
                   docs_url="/", redoc_url="/redoc", root_path=ROOT_PATH)
+    
     app.settings = settings
 
     # Add router

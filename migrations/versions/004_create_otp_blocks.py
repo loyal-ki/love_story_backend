@@ -10,9 +10,9 @@ table = Table(
     "otp_blocks", meta,
     Column("id", BigInteger, primary_key=True, autoincrement=True),
     Column("user_id", BigInteger, index=True),
-    Column("created", DateTime, default=datetime.utcnow),
-    Column("modified", DateTime, default=datetime.utcnow,
-           onupdate=datetime.utcnow)
+    Column("created", DateTime, default=datetime.now),
+    Column("modified", DateTime, default=datetime.now,
+           onupdate=datetime.now)
 )
 
 

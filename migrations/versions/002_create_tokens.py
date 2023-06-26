@@ -17,9 +17,9 @@ table = Table(
     Column("refresh_token_expires_in", Integer),
     Column("token_type", String(20)),
     Column("revoked", Boolean),
-    Column("created", DateTime, default=datetime.utcnow),
-    Column("modified", DateTime, default=datetime.utcnow,
-           onupdate=datetime.utcnow)
+    Column("created", DateTime, default=datetime.now),
+    Column("modified", DateTime, default=datetime.now,
+           onupdate=datetime.now)
 )
 
 

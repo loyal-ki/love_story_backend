@@ -18,9 +18,9 @@ table = Table(
     Column("age", Integer),
     Column("gender", Integer),
     Column("user_role", String(20)),
-    Column("created", DateTime, default=datetime.utcnow),
-    Column("modified", DateTime, default=datetime.utcnow,
-           onupdate=datetime.utcnow)
+    Column("created", DateTime, default=datetime.now),
+    Column("modified", DateTime, default=datetime.now,
+           onupdate=datetime.now)
 )
 
 

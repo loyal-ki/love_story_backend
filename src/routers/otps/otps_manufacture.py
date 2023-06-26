@@ -13,7 +13,9 @@ from src.models.users.otps_model import OTPsModel
 from src.utils.otp import random_otp
 from src.models.enums.otp import OTPStatusEnum
 from src.database import db_session
+from src.utils import logger
 
+LOG = logger.get_app_logger()
 
 def save_record_otp(user_id: int, session: Session) -> OTPsModel:
     # create otp code for user to verify
@@ -39,14 +41,13 @@ def save_record_otp(user_id: int, session: Session) -> OTPsModel:
 
 
 def find_otp_lifetime(user_id: int, session_id: str, session: Session):
-    since = datetime.datetime.now() - datetime.timedelta(minutes=1)
-
+    since = datetime.datetime.now() - datetime.timedelta(seconds=10)
     query = session.query(OTPsModel).filter(
         OTPsModel.user_id == user_id and OTPsModel.session_id == session_id and or_(
             OTPBlocksModel.created == None,
-            OTPBlocksModel.created < since)).first()
+            OTPBlocksModel.created > since)).first()
+    
     return query
-
 
 def save_otp_failed_count(lifetime_result: OTPsModel, session: Session):
     lifetime_result.otp_failed_count = lifetime_result.otp_failed_count + 1
@@ -66,4 +67,3 @@ def disable_otp_code(lifetime_result: OTPsModel, session: Session):
     lifetime_result.status = OTPStatusEnum.already_used
     session.merge(lifetime_result)
     session.commit()
-
